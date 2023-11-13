@@ -17,54 +17,26 @@
 </head>
 
 <body>
-    
-    <!-- <header class="header">
-        <img src="logo.png" alt="logo">
-
-        <div class="links">
-            <a href="">Sobre</a>
-            <a href="">
-                <button>Usuário</button>
-            </a>
-        </div>        
-
-    </header> -->
-
     <main class="container">
-
         <h1>Lista de Pacientes</h1>
-
         <div class="div-table">
             <table id="lista-paciente" class="table-fixed-layout">
-                <thead class="thead">
-                    <tr class="header-table">
-                        <td class="header-table">Nome</td>
-                        <td class="header-table">E-mail</td>
-                        <td class="header-table">CPF</td>
-                        <td class="header-table">Telefone</td>
-                    </tr>
-                </thead>
-
+                <!-- Cabeçalho da tabela... -->
                 <tbody class="body-lista"></tbody>
-
-                <tfoot></tfoot>
-
+                <!-- Rodapé da tabela... -->
             </table>
         </div>
-        
     </main>
 
     <div class="modal-overlay">
         <div class="modal-detalhes">
             <div class="modal-detalhes-header">
                 <h5 class="modal-title" id="modalDetalhesLabel">Detalhes do Paciente</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
             </div>
-
-            <div class="modal-detalhes-body"></div>
-
+            <div class="modal-detalhes-body">
+                <div class="paciente-info"></div>
+                <div class="endereco-info"></div>
+            </div>
             <div class="modal-detalhes-footer">
                 <a href="#">
                     <button id="delete" type="button" class="btn-excluir" onclick="ModalExcluir.open()">Excluir</button>
@@ -72,12 +44,10 @@
                 <a href="#">
                     <button type="button" class="btn-voltar" onclick="Modal.close()">Voltar</button>
                 </a>
-                
             </div>
-
         </div>
-
     </div>
+
 
     <div class="modal-overlay-delete">
         <div class="modal-delete">

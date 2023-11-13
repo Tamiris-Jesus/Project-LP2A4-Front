@@ -280,3 +280,21 @@ button:hover{
     background-color: limegreen;
 }
 
+
+/* Estilo para o container geral */
+.modal-info-container {
+    display: flex;
+    justify-content: space-between; 
+}
+
+/* Estilo para a área de informações do paciente */
+.paciente-info {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+/* Estilo para a área de informações do endereço */
+.endereco-info {
+    flex: 1; 
+}
+
