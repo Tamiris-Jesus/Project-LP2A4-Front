@@ -50,6 +50,9 @@ function cadastrar() {
         .then(data => {
             console.log("Consulta agendada:", data);
             mostrarMensagemSucesso();
+            setTimeout(function(){
+                mensagemSucesso.style.display = 'none';
+            }, 6000);
             limpar();
         })
         .catch(error => {
