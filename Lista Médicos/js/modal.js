@@ -39,22 +39,59 @@ const ModalExcluir = {
 
 // EXIBIÇÃO DE DETALHES
 function exibirDetalhes(row) {
-    // Obtém os elementos da linha
-    const cells = row.getElementsByTagName('td');
+    const medicoId = row.getAttribute('data-id');
+    const body = document.querySelector('.modal-detalhes-body');
 
-    // Extrai os detalhes do médico da linha
-    const nome = cells[0].innerText;
-    const email = cells[1].innerText;
-    const crm = cells[2].innerText;
-    const especialidade = cells[3].innerText;
+    fetch(`http://localhost:8080/medicos/${medicoId}`)
+        .then(response => response.json())
+        .then(medico => {
+            const btnExcluir = document.querySelector('#yes');
 
-    // Preenche os detalhes na janela modal
-    document.getElementById('modalDetalhesLabel').textContent = `Detalhes de ${nome}`;
-    document.querySelector('.lista-detalhes dd:nth-child(2)').textContent = nome;
-    document.querySelector('.lista-detalhes dd:nth-child(4)').textContent = email;
-    document.querySelector('.lista-detalhes dd:nth-child(6)').textContent = crm;
-    document.querySelector('.lista-detalhes dd:nth-child(8)').textContent = especialidade;
+            btnExcluir.onclick = function () {
+                excluirMedico(medicoId);
+            };
 
-    // Abre a janela modal
-    Modal.open();
+            body.innerHTML = `
+            <div class="modal-info-container">
+                <div class="medico-info">
+                    <dl class="lista-detalhes">
+                        <dt>ID</dt>
+                        <dd>${medico.id}</dd>
+                        <dt>Nome</dt>
+                        <dd>${medico.nome}</dd>
+                        <dt>E-mail</dt>
+                        <dd>${medico.email}</dd>
+                        <dt>Telefone</dt>
+                        <dd>${medico.telefone}</dd>
+                        <dt>CRM</dt>
+                        <dd>${medico.crm}</dd>
+                        <dt>Especialidade</dt>
+                        <dd>${medico.especialidade}</dd>
+                        <br>
+                        <dt>Endereço(s) cadastrado(s):</dt>
+                        ${medico.enderecosDTO.map(endereco => `
+                            <dt>Logradouro</dt>
+                            <dd>${endereco.logradouro}</dd>
+                            <dt>Bairro</dt>
+                            <dd>${endereco.bairro}</dd>
+                            <dt>CEP</dt>
+                            <dd>${endereco.cep}</dd>
+                            <dt>Cidade</dt>
+                            <dd>${endereco.cidade}</dd>
+                            <dt>UF</dt>
+                            <dd>${endereco.uf}</dd>
+                            <dt>Complemento</dt>
+                            <dd>${endereco.complemento}</dd>
+                            <dt>Numero</dt>
+                            <dd>${endereco.numero}</dd>
+                            <hr>
+                        `).join('')}
+                    </dl>
+                </div>
+            </div>
+            `;
+
+            Modal.open();
+        })
+        .catch(error => console.error('Erro ao obter detalhes do médico:', error));
 }

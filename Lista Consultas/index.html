@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,18 +18,16 @@
 </head>
 
 <body>
-    <header></header>
-
-    <main class="container"> 
+    <main class="container">
 
         <div id="mensagemSucesso" style="display: none;" class="alert alert-success mt-3">
             Consulta cancelada com sucesso!
         </div>
-        
+
         <div id="mensagemErro" style="display: none;" class="alert alert-danger mt-3">
         </div>
 
-        <h1>Lista de Consultas</h1> 
+        <h1>Lista de Consultas</h1>
 
         <div class="div-table">
             <table id="lista-consulta" class="table-fixed-layout">
@@ -47,7 +46,7 @@
 
             </table>
         </div>
-        
+
     </main>
 
     <div class="modal-overlay">
@@ -56,26 +55,17 @@
 
             <div class="modal-detalhes-header">
                 <h5 class="modal-title" id="modalDetalhesLabel">Detalhes da Consulta</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
             </div>
 
             <div class="modal-detalhes-body"></div>
-
             <div class="modal-detalhes-footer">
-                <a href="#">
-                    <button id="delete" type="button" class="btn-excluir" onclick="ModalExcluir.open()">Cancelar</button>
-                </a>
-                <a href="#">
-                    <button type="button" class="btn-voltar" onclick="Modal.close()">Voltar</button>
-                </a>
-                
+                <button type="button" class="btn-voltar" onclick="Modal.close()">Voltar</button>
+                <button id="delete" type="button" class="btn-excluir" onclick="ModalExcluir.open()">Cancelar</button>
             </div>
 
         </div>
 
-        
+
     </div>
 
     <div class="modal-overlay-delete">
@@ -88,23 +78,23 @@
 
             <div class="modal-delete-body">
                 <label for="cancelamento" class="form-label" id="cancelamentoLabel">Motivo do cancelamento</label>
-                            <select name="cancelamento" class="form-control" id="cancelamento">
-                                <option value="" selected disabled>Selecione uma opção</option>
-                                <option value="MEDICO_CANCELOU">Médico cancelou</option>
-                                <option value="PACIENTE_DESISTIU">Paciente desistiu</option>
-                                <option value="OUTROS">Outros</option>
-                            </select>
+                <select name="cancelamento" class="form-control" id="cancelamento">
+                    <option value="" selected disabled>Selecione uma opção</option>
+                    <option value="MEDICO_CANCELOU">Médico cancelou</option>
+                    <option value="PACIENTE_DESISTIU">Paciente desistiu</option>
+                    <option value="OUTROS">Outros</option>
+                </select>
 
                 <p>Deseja cancelar essa consulta?</p>
             </div>
-            
+
             <div class="modal-delete-footer">
-                <button  onclick="ModalExcluir.close()" type="button" class="btn btn-secondary" data-dismiss="modal" id="delete">Não</button> <!-- Esse onclick tem q ta no js--> 
-                <button onclick="cancelarConsulta()" type="button" class="btn btn-danger" id="yes">Sim</button> <!-- Esse onclick tem q ta no js--> 
+                <button onclick="ModalExcluir.close()" type="button" class="btn btn-secondary" data-dismiss="modal"
+                    id="delete">Não</button> 
+                <button onclick="cancelarConsulta()" type="button" class="btn btn-danger" id="yes">Sim</button>
             </div>
-
         </div>
-
-    </div>   
+    </div>
 </body>
+
 </html>

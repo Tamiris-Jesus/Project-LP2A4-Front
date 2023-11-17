@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Adicione esta linha para ver os dados no console
+            console.log(data); 
 
             const tbody = document.querySelector('.body-lista');
 
             data.forEach(medico => {
                 const row = document.createElement('tr');
+                row.setAttribute('data-id', medico.id);
                 row.onclick = function () {
                     exibirDetalhes(this);
                 };

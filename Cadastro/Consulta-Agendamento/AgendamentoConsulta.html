@@ -47,7 +47,31 @@
                                 <option value="DERMATOLOGIA">Dermatologia</option>
                             </select>
                         </div>
+                        <div class="mb-3" id="btnContainer">
+                            <button type="button" class="btn btn-secondary" id="escolherBtn">Escolher
+                                Especialidade</button>
+                        </div>
                     </div>
+
+                    <style>
+                        #medicoEspecialidadeContainer {
+                            display: flex;
+                            padding-right: 10px;
+                            flex-wrap: wrap;
+                        }
+
+                        #medicoContainer,
+                        #especialidadeContainer,
+                        #escolherBtn {
+                            flex: 1;
+                        }
+
+                        #btnContainer {
+                            margin-top: 30px;
+                            margin-left: 10px;
+                        }
+                    </style>
+
                 </div>
             </div>
             <div class="row">
@@ -57,7 +81,7 @@
                         <input type="date" name="data" class="form-control" id="data" required>
                         <div id="mensagemDataErro" class="text-danger mensagemErro"></div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="hora" class="form-label" id="horaLabel">Horário da consulta</label>
                         <input type="time" name="hora" class="form-control" id="hora" required>
@@ -66,24 +90,20 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-secondary mb-3" id="escolherBtn">Escolher Especialidade</button>
-            
             <br>
 
-            <div class="d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center">
                 <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
             </div>
-            
-            <!-- <button type="submit" class="btn btn-primary mb-3">Enviar</button> -->
         </form>
 
         <div id="mensagemSucesso" style="display: none;" class="alert alert-success mt-3">
             Consulta agendada com sucesso!
         </div>
-        
+
         <div id="mensagemErro" style="display: none;" class="alert alert-danger mt-3">
         </div>
-        
+
     </div>
 </body>
 

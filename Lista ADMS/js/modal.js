@@ -37,33 +37,59 @@ const ModalExcluir = {
     }
 }
 
-// EXIBIÇÃO DE DETALHES
+
 function exibirDetalhes(row) {
-    // obtém os elementos da linha
-    const cells = row.getElementsByTagName('td');
+    const administradorId = row.getAttribute('data-id');
+    const body = document.querySelector('.modal-detalhes-body');
 
-    // extrai os detalhes do paciente da linha da tabela
-    const nome = cells[0].innerText;
-    const email = cells[1].innerText;
-    const telefone = cells[2].innerText;
-    const cpf = cells[3].innerText;
-    
-    // como fazer parapegar do banco ou da tela de cadastro ???
-    // const lougadoro = cells[4].innerText;
-    // const bairro = cells[5].innerText;
-    // const cep = cells[6].innerText;
-    // const cidade = cells[7].innerText;
-    // const uf = cells[8].innerText;
-    // const complemento = cells[9].innerText;
-    // const numero = cells[10].innerText;
+    fetch(`http://localhost:8080/administradores/${administradorId}`)
+        .then(response => response.json())
+        .then(administrador => {
+            const btnExcluir = document.querySelector('#yes');
 
-    // preenche os detalhes na janela modal
-    document.getElementById('modalDetalhesLabel').textContent = `Detalhes de ${nome}`;
-    document.querySelector('.lista-detalhes dd:nth-child(2)').textContent = nome;
-    document.querySelector('.lista-detalhes dd:nth-child(4)').textContent = email;
-    document.querySelector('.lista-detalhes dd:nth-child(6)').textContent = telefone;
-    document.querySelector('.lista-detalhes dd:nth-child(8)').textContent = cpf;
+            btnExcluir.onclick = function () {
+                excluirAdministrador(administradorId);
+            };
 
-    // abre a janela modal
-    Modal.open();
+            body.innerHTML = `
+            <div class="modal-info-container">
+                <div class="adm-info">
+                    <dl class="lista-detalhes">
+                        <dt>ID</dt>
+                        <dd>${administrador.id}</dd>
+                        <dt>Nome</dt>
+                        <dd>${administrador.nome}</dd>
+                        <dt>E-mail</dt>
+                        <dd>${administrador.email}</dd>
+                        <dt>Telefone</dt>
+                        <dd>${administrador.telefone}</dd>
+                        <dt>CPF</dt>
+                        <dd>${administrador.cpf}</dd>
+                        <br>
+                        <dt>Endereço(s) cadastrado(s):</dt>
+                        ${administrador.enderecosDTO.map(endereco => `
+                            <dt>Logradouro</dt>
+                            <dd>${endereco.logradouro}</dd>
+                            <dt>Bairro</dt>
+                            <dd>${endereco.bairro}</dd>
+                            <dt>CEP</dt>
+                            <dd>${endereco.cep}</dd>
+                            <dt>Cidade</dt>
+                            <dd>${endereco.cidade}</dd>
+                            <dt>UF</dt>
+                            <dd>${endereco.uf}</dd>
+                            <dt>Complemento</dt>
+                            <dd>${endereco.complemento}</dd>
+                            <dt>Numero</dt>
+                            <dd>${endereco.numero}</dd>
+                            <hr>
+                        `).join('')}
+                    </dl>
+                </div>
+            </div>
+        `;
+
+        Modal.open();
+    })
+    .catch(error => console.error('Erro ao obter detalhes do administrador:', error));
 }

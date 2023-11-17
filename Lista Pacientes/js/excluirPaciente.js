@@ -1,7 +1,7 @@
 function excluirPaciente(id) {
     const pacienteId = id;
     console.log(pacienteId);
-    // Faça uma requisição DELETE à API para excluir o paciente
+    // Faz uma requisição DELETE à API para excluir o paciente
     fetch(`http://localhost:8080/pacientes/${pacienteId}`, {
         method: 'DELETE',
     })

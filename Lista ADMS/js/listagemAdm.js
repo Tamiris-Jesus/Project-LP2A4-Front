@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             data.forEach(administrador => {
                 const row = document.createElement('tr');
+                row.setAttribute('data-id', administrador.id);
+
                 row.onclick = function () {
                     exibirDetalhes(this);
                 };

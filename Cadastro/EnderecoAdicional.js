@@ -24,3 +24,8 @@ function removerEndereco() {
 
     enderecoAdicionado = false;
 }
+
+
+
+  
+

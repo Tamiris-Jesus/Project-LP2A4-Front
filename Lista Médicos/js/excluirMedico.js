@@ -1,36 +1,29 @@
-// excluirMedico.js
+function excluirMedico(id) {
+    const medicoId = id;
+    console.log(medicoId);
 
-function excluirMedico() {
-    const idMedico = obterIdMedico(); // Implemente a função obterIdMedico() para obter o ID do médico a ser excluído.
-
-    if (!idMedico) {
-        console.error('ID do médico não encontrado.');
-        return;
-    }
-
-    const apiUrl = `http://localhost:8080/medicos/${idMedico}`;
-
-    fetch(apiUrl, {
+    fetch(`http://localhost:8080/medicos/${medicoId}`, {
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Erro ao excluir médico: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Médico excluído com sucesso:', data);
-            ModalExcluir.close();
-            // Adicione aqui o código para atualizar a lista de médicos após a exclusão, se necessário.
-        })
-        .catch(error => console.error('Erro ao excluir médico:', error));
-}
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao excluir médico');
+        }
 
-function obterIdMedico() {
-    const deleteButton = document.getElementById('delete');
-    return deleteButton.dataset.id;
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            return {};
+        }
+
+        return response.json();
+    })
+    .then(data => {
+        console.log('Médico excluído com sucesso:', data);
+
+        Modal.close();
+        ModalExcluir.close();
+
+        location.reload();  
+    })
+    .catch(error => console.error('Erro ao excluir médico:', error));
 }

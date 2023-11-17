@@ -171,8 +171,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Adicionar opção padrão sem seleção
             const defaultMedicoOption = document.createElement("option");
+            defaultMedicoOption.value = ""; 
             defaultMedicoOption.text = "Selecione um médico";
+            defaultMedicoOption.selected = true; // Define como selecionado
+            defaultMedicoOption.disabled = true; // Define como desabilitado
             medicoSelect.add(defaultMedicoOption);
+            
 
             // Adicionar médicos
             data.forEach(medico => {
