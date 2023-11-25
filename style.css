@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+
 
 body {
     margin: 0;
@@ -35,4 +37,22 @@ a {
 
 a:hover {
     background-color: #f0f0f0;
+}
+
+.error{
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+
+#erroTitle{
+    font-size: 40px;
+}
+
+.erroCorpo{
+    font-size: 24px;
+}
+
+img{
+    width: 300px;
 }

@@ -27,5 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 tbody.appendChild(row);
             });
         })
-        .catch(error => console.error('Erro ao obter dados da API:', error));
+        .catch(error => {
+            console.error('Erro ao obter dados da API:', error);
+            window.location.href = '../../error.html'; 
+        });
 });

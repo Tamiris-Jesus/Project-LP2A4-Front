@@ -82,7 +82,10 @@ function cadastrar() {
         }, 6000);
         limpar();
     })
-    .catch(error => console.error("Erro ao cadastrar o administrador:", error));
+    .catch(error => {
+        console.error('Erro ao cadastrar o administrador:', error);
+        window.location.href = '../../error.html'; 
+    });
 };
 
 

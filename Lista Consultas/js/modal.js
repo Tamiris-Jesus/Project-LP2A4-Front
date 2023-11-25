@@ -74,7 +74,10 @@ function exibirDetalhes(row) {
         </dl> 
             `
         })
-        .catch(error => console.error('Erro ao obter detalhes do paciente:', error));
+        .catch(error => {
+            console.error('Erro ao obter detalhes do paciente:', error);
+            window.location.href = '../../error.html'; 
+        });
 
     Modal.open(); // Abra o modal após obter os detalhes
 }

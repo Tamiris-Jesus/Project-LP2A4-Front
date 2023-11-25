@@ -91,5 +91,8 @@ function exibirDetalhes(row) {
 
         Modal.open();
     })
-    .catch(error => console.error('Erro ao obter detalhes do administrador:', error));
+    .catch(error => {
+        console.error('Erro ao obter detalhes do administrador:', error);
+        window.location.href = '../../error.html'; 
+    });
 }

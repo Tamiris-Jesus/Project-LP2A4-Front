@@ -93,5 +93,8 @@ function exibirDetalhes(row) {
 
             Modal.open();
         })
-        .catch(error => console.error('Erro ao obter detalhes do médico:', error));
+        .catch(error => {
+            console.error('Erro ao obter detalhes do médico:', error);
+            window.location.href = '../../error.html'; 
+        });
 }

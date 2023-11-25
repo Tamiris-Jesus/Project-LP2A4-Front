@@ -81,7 +81,10 @@ function cadastrar() {
         }, 6000);
         limpar();
     })
-    .catch(error => console.error("Erro ao cadastrar o médico:", error));
+    .catch(error => {
+        console.error('Erro ao cadastrar o médico:', error);
+        window.location.href = '../../error.html'; 
+    });
 };
 
 
