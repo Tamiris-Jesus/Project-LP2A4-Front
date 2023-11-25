@@ -1,3 +1,8 @@
+const btnAtualizar = document.getElementById('editar'); 
+btnAtualizar.addEventListener('click', function(){
+    window.location.href = './atualizar.html';
+});
+
 // MODAL DE DETALHES
 const Modal = {
     open(){

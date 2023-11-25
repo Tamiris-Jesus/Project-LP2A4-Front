@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 row.onclick = function () {
                     exibirDetalhes(this);
+                    detalhar(this);
                 };
 
                 row.innerHTML = `
