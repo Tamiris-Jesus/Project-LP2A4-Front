@@ -1,7 +1,3 @@
-const btnAtualizar = document.getElementById('editar'); 
-btnAtualizar.addEventListener('click', function(){
-    window.location.href = './atualizar.html';
-});
 
 // MODAL DE DETALHES
 const Modal = {
@@ -51,11 +47,21 @@ function exibirDetalhes(row) {
         .then(response => response.json())
         .then(paciente => {
             const btnExcluir = document.querySelector('#yes');
+            const btnEditar = document.querySelector('#editar');
 
             btnExcluir.onclick = function () {
                 excluirPaciente(pacienteId);
             };
 
+            //  btnEditar.onclick = function () {
+            //     atualizar(pacienteId);
+            // };
+
+            btnEditar.onclick = function () {
+                window.location.href = `./atualizar.html?id=${pacienteId}`;
+            };
+            
+        
             body.innerHTML = `
                 <div class="modal-info-container">
                     <div class="paciente-info">
@@ -95,12 +101,10 @@ function exibirDetalhes(row) {
             `;
 
             Modal.open();
+      
         })
         .catch(error => {
             console.error('Erro ao obter detalhes do paciente:', error);
             window.location.href = '../../error.html'; 
         });
 }
-
-
-

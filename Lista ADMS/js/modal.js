@@ -46,9 +46,16 @@ function exibirDetalhes(row) {
         .then(response => response.json())
         .then(administrador => {
             const btnExcluir = document.querySelector('#yes');
+            const btnEditar = document.querySelector('#editar');
+
 
             btnExcluir.onclick = function () {
                 excluirAdministrador(administradorId);
+            };
+
+              
+            btnEditar.onclick = function () {
+                window.location.href = `./atualizar.html?id=${administradorId}`;
             };
 
             body.innerHTML = `

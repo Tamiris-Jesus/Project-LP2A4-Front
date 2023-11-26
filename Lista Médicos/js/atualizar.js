@@ -1,21 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Obter o pacienteId dos parâmetros da URL
-    const pacienteId = window.location.search.split('id=')[1];
-    console.log("ID do paciente obtido:", pacienteId);
+    const medicoId = window.location.search.split('id=')[1];
+    console.log("ID do médico obtido:", medicoId);
 
-    fetch(`http://localhost:8080/pacientes/${pacienteId}`)
+    fetch(`http://localhost:8080/medicos/${medicoId}`)
         .then(response => response.json())
-        .then(paciente => {
-            console.log(paciente);
+        .then(medico => {
+            console.log(medico);
 
             // Preencher os campos do formulário com as informações do paciente
-            document.getElementById('nome').value = paciente.nome;
-            document.getElementById('cpf').value = paciente.cpf;
-            document.getElementById('email').value = paciente.email;
-            document.getElementById('telefone').value = paciente.telefone;
+            document.getElementById('nome').value = medico.nome;
+            document.getElementById('crm').value = medico.crm;
+            document.getElementById('email').value = medico.email;
+            document.getElementById('telefone').value = medico.telefone;
+            document.getElementById('especialidade').value = medico.especialidade;
+
 
             // Preencher os campos de endereço, se aplicável
-            const enderecoPrincipal = paciente.enderecosDTO[0];
+            const enderecoPrincipal = medico.enderecosDTO[0];
 
             document.getElementById('cep').value = enderecoPrincipal.cep;
             document.getElementById('logradouro').value = enderecoPrincipal.logradouro;
@@ -29,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('enderecoPrincipalId').value = enderecoPrincipal.id;
 
             // Preencher os campos do endereço adicional, se existir
-            if (paciente.enderecosDTO.length > 1) {
-                const enderecoAdicional = paciente.enderecosDTO[1]; // Considerando que há apenas um endereço adicional
+            if (medico.enderecosDTO.length > 1) {
+                const enderecoAdicional = medico.enderecosDTO[1]; // Considerando que há apenas um endereço adicional
                 document.getElementById('cep1').value = enderecoAdicional.cep;
                 document.getElementById('logradouro1').value = enderecoAdicional.logradouro;
                 document.getElementById('bairro1').value = enderecoAdicional.bairro;
@@ -47,21 +49,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error('Erro ao obter detalhes do paciente:', error);
+            console.error('Erro ao obter detalhes do medico:', error);
         });
 });
 
 
 function enviar() {
-    const pacienteId = window.location.search.split('id=')[1];
+    const medicoId = window.location.search.split('id=')[1];
 
     // Construir o objeto de requisição com as informações atualizadas
     const requestBody = {
-        id: pacienteId,
+        id: medicoId,
         nome: document.getElementById('nome').value,
         email: document.getElementById('email').value,
         telefone: document.getElementById('telefone').value,
-        cpf: document.getElementById('cpf').value,
+        crm: document.getElementById('crm').value,
         enderecos: [
             {
                 id: document.getElementById('enderecoPrincipalId').value,
@@ -75,7 +77,7 @@ function enviar() {
             }
         ]
     };
-
+    
     // Adicionar endereço adicional se existir
     if (document.getElementById('enderecoAdicional').style.display === 'block') {
         requestBody.enderecos.push(
@@ -92,7 +94,10 @@ function enviar() {
         );
     }
 
-    fetch(`http://localhost:8080/pacientes/atualizar`, {
+    console.log(requestBody);
+
+
+    fetch(`http://localhost:8080/medicos/atualizar`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -114,21 +119,21 @@ function enviar() {
             limpar();
         })
         .catch(error => {
-            console.error('Erro ao atualizar o paciente:', error);
+            console.error('Erro ao atualizar o medico:', error);
         });
 }
 
-function mostrarMensagemSucesso() {
-    mensagemSucesso.style.display = "block";
-}
+// function mostrarMensagemSucesso() {
+//     mensagemSucesso.style.display = "block";
+// }
 
 
-function limpar() {
-    const campos = [
-        nome, cpf, email, telefone,
-        cep, logradouro, bairro, uf, cidade, numero, complemento,
-        cep1, logradouro1, bairro1, uf1, cidade1, numero1, complemento1
-    ];
+// function limpar() {
+//     const campos = [
+//         nome, cpf, email, telefone,
+//         cep, logradouro, bairro, uf, cidade, numero, complemento,
+//         cep1, logradouro1, bairro1, uf1, cidade1, numero1, complemento1
+//     ];
 
-    campos.forEach(campo => campo.value = "");
-}
+//     campos.forEach(campo => campo.value = "");
+// }

@@ -46,9 +46,16 @@ function exibirDetalhes(row) {
         .then(response => response.json())
         .then(medico => {
             const btnExcluir = document.querySelector('#yes');
+            const btnEditar = document.querySelector('#editar');
+
 
             btnExcluir.onclick = function () {
                 excluirMedico(medicoId);
+            };
+
+            
+            btnEditar.onclick = function () {
+                window.location.href = `./atualizar.html?id=${medicoId}`;
             };
 
             body.innerHTML = `

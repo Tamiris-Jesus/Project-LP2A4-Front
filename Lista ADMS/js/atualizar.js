@@ -1,21 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Obter o pacienteId dos parâmetros da URL
-    const pacienteId = window.location.search.split('id=')[1];
-    console.log("ID do paciente obtido:", pacienteId);
+    // Obter o administradorId dos parâmetros da URL
+    const administradorId = window.location.search.split('id=')[1];
+    console.log("ID do administrador obtido:", administradorId);
 
-    fetch(`http://localhost:8080/pacientes/${pacienteId}`)
+    fetch(`http://localhost:8080/administradores/${administradorId}`)
         .then(response => response.json())
-        .then(paciente => {
-            console.log(paciente);
+        .then(administrador => {
+            console.log(administrador);
 
-            // Preencher os campos do formulário com as informações do paciente
-            document.getElementById('nome').value = paciente.nome;
-            document.getElementById('cpf').value = paciente.cpf;
-            document.getElementById('email').value = paciente.email;
-            document.getElementById('telefone').value = paciente.telefone;
+            // Preencher os campos do formulário com as informações do administrador
+            document.getElementById('nome').value = administrador.nome;
+            document.getElementById('cpf').value = administrador.cpf;
+            document.getElementById('email').value = administrador.email;
+            document.getElementById('telefone').value = administrador.telefone;
+            document.getElementById('registro').value = administrador.registro;
+
 
             // Preencher os campos de endereço, se aplicável
-            const enderecoPrincipal = paciente.enderecosDTO[0];
+            const enderecoPrincipal = administrador.enderecosDTO[0];
 
             document.getElementById('cep').value = enderecoPrincipal.cep;
             document.getElementById('logradouro').value = enderecoPrincipal.logradouro;
@@ -29,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('enderecoPrincipalId').value = enderecoPrincipal.id;
 
             // Preencher os campos do endereço adicional, se existir
-            if (paciente.enderecosDTO.length > 1) {
-                const enderecoAdicional = paciente.enderecosDTO[1]; // Considerando que há apenas um endereço adicional
+            if (administrador.enderecosDTO.length > 1) {
+                const enderecoAdicional = administrador.enderecosDTO[1]; // Considerando que há apenas um endereço adicional
                 document.getElementById('cep1').value = enderecoAdicional.cep;
                 document.getElementById('logradouro1').value = enderecoAdicional.logradouro;
                 document.getElementById('bairro1').value = enderecoAdicional.bairro;
@@ -47,21 +49,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error('Erro ao obter detalhes do paciente:', error);
+            console.error('Erro ao obter detalhes do administrador:', error);
         });
 });
 
 
 function enviar() {
-    const pacienteId = window.location.search.split('id=')[1];
+    const administradorId = window.location.search.split('id=')[1];
 
     // Construir o objeto de requisição com as informações atualizadas
     const requestBody = {
-        id: pacienteId,
+        id: administradorId,
         nome: document.getElementById('nome').value,
         email: document.getElementById('email').value,
         telefone: document.getElementById('telefone').value,
         cpf: document.getElementById('cpf').value,
+        registro: document.getElementById('registro').value,
+
         enderecos: [
             {
                 id: document.getElementById('enderecoPrincipalId').value,
@@ -92,7 +96,7 @@ function enviar() {
         );
     }
 
-    fetch(`http://localhost:8080/pacientes/atualizar`, {
+    fetch(`http://localhost:8080/administradores/atualizar`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -114,7 +118,7 @@ function enviar() {
             limpar();
         })
         .catch(error => {
-            console.error('Erro ao atualizar o paciente:', error);
+            console.error('Erro ao atualizar o administrador:', error);
         });
 }
 
