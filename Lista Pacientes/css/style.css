@@ -1,5 +1,6 @@
 /*GLOBAL*******************************************************/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
 
 *{
     padding: 0%;
@@ -8,11 +9,12 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     /* background-color: #f7f7f7; */
     background-image: url("../../img/pacientes.png");
     background-repeat: no-repeat;
     background-size: cover;    
+    
 }
 
 
