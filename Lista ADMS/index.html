@@ -45,10 +45,15 @@
     </main>
 
     <div class="modal-overlay">
+
         <div class="modal-detalhes">
+
+            <button type="button" class="btn-voltar btn-fechar" onclick="Modal.close()">x</button>
+
             <div class="modal-detalhes-header">
                 <h5 class="modal-title" id="modalDetalhesLabel">Detalhes do Administrador</h5>
             </div>
+
             <div class="modal-detalhes-body">
                 <div class="modal-detalhes-body">
                     <div class="adm-info"></div>
@@ -56,7 +61,9 @@
                 </div>
             </div>
             <div class="modal-detalhes-footer">
-                <button type="button" class="btn-voltar" onclick="Modal.close()">Voltar</button>
+
+                <button type="button" class="btn-editar" >Editar</button>
+                
                 <button id="delete" type="button" class="btn-excluir" onclick="ModalExcluir.open()">Excluir</button>
             </div>
         </div>
@@ -76,7 +83,7 @@
 
             <div class="modal-delete-footer">
                 <button onclick="ModalExcluir.close()" type="button" class="btn btn-secondary" data-dismiss="modal"
-                    id="delete">Não</button>
+                    id="no">Não</button>
                 <button onclick="ModalExcluir.close()" type="button" class="btn btn-danger" id="yes">Sim</button>
             </div>
         </div>

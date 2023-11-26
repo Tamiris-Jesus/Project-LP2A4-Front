@@ -65,7 +65,11 @@ function exibirDetalhes(row) {
                         <dd>${administrador.telefone}</dd>
                         <dt>CPF</dt>
                         <dd>${administrador.cpf}</dd>
-                        <br>
+                    </dl>
+                </div>
+
+                <div class="endereco-info">
+                    <dl class="lista-detalhes">
                         <dt>Endereço(s) cadastrado(s):</dt>
                         ${administrador.enderecosDTO.map(endereco => `
                             <dt>Logradouro</dt>
