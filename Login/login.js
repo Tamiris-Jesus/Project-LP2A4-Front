@@ -5,7 +5,7 @@ botaoLogin.addEventListener("click", function() {
     var senha = document.getElementById("senha").value;
     
     if (email === "admin" && senha === "admin") {
-        window.location.href = "../home.html";
+        window.location.href = "../index.html";
     } else {
         alert("Credenciais inválidas. Tente novamente.");
     }
