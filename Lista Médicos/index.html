@@ -45,7 +45,12 @@
 
         <div class="modal-detalhes">
 
+            <button type="button" class="btn-voltar btn-fechar" onclick="Modal.close()">x</button>
+
             <div class="modal-detalhes-header">
+
+                
+
                 <h5 class="modal-title" id="modalDetalhesLabel">Detalhes do Médico</h5>
             </div>
             <div class="modal-detalhes-body">
@@ -53,7 +58,9 @@
                 <div class="endereco-info"></div>
             </div>
             <div class="modal-detalhes-footer">
-                <button type="button" class="btn-voltar" onclick="Modal.close()">Voltar</button>
+
+                <button type="button" class="btn-editar" >Editar</button>
+                
                 <button id="delete" type="button" class="btn-excluir" onclick="ModalExcluir.open()"
                     data-id="${medico.id}">Excluir</button>
             </div>
@@ -75,7 +82,7 @@
 
             <div class="modal-delete-footer">
                 <button onclick="ModalExcluir.close()" type="button" class="btn btn-secondary" data-dismiss="modal"
-                    id="delete">Não</button> <!-- Esse onclick tem q ta no js-->
+                    id="no">Não</button> <!-- Esse onclick tem q ta no js-->
                 <button onclick="excluirMedico()" type="button" class="btn btn-danger" id="yes">Sim</button>
                 <!-- Esse onclick tem q ta no js-->
             </div>

@@ -67,7 +67,11 @@ function exibirDetalhes(row) {
                         <dd>${medico.crm}</dd>
                         <dt>Especialidade</dt>
                         <dd>${medico.especialidade}</dd>
-                        <br>
+                    </dl>
+                </div>
+
+                <div class="endereco-info">
+                    <dl class="lista-detalhes">
                         <dt>Endereço(s) cadastrado(s):</dt>
                         ${medico.enderecosDTO.map(endereco => `
                             <dt>Logradouro</dt>
