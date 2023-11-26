@@ -1,5 +1,11 @@
+
+
 // Máscara do CEP
 const masks = {
+    removeNumbers(value) {
+        return value
+            .replace(/[0-9]/g, '') // Remove caracteres numéricos
+    },
     cep(value) {
         return value
             .replace(/\D/g, '') // Remove caracteres não numéricos
@@ -17,7 +23,7 @@ const masks = {
 
 
 // Formatação telefone
-const telefoneValidacao= document.getElementById('telefone');
+const telefoneValidacao = document.getElementById('telefone');
 telefoneValidacao.addEventListener('input', async (e) => {
     const msgError = document.querySelector('#telefoneError');
     e.target.value = masks["telefone"](e.target.value); // Aplica a máscara de Telefone
@@ -65,7 +71,7 @@ cepValidacao1.addEventListener('input', async (e) => {
 }, false)
 
 
-
+// Validação do CRM
 const crmValidacao = document.getElementById('crm');
 crmValidacao.addEventListener('input', async () => {
     const msgError = document.querySelector('#crmError');
@@ -79,6 +85,71 @@ crmValidacao.addEventListener('input', async () => {
         crmValidacao.classList.remove("errorInput");
     }
 }, false);
+
+// Validação do nome
+const nomeValidacao = document.getElementById('nome');
+nomeValidacao.addEventListener('input', (e) => {
+    const msgError = document.querySelector('#nomeError');
+
+    e.target.value = masks["removeNumbers"](e.target.value); 
+    if (nomeValidacao.value.length < 2) {
+        msgError.innerHTML = '*Insira um nome válido';
+        nomeValidacao.classList.add("errorInput");
+    } else {
+        msgError.innerHTML = '';
+        nomeValidacao.classList.remove("errorInput");
+    }
+}, false)
+
+// Validação do email
+const emailValidacao = document.getElementById('email');
+emailValidacao.addEventListener('input', () => {
+    const msgError = document.querySelector('#emailError');
+    const pattern = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+
+    if (!pattern.test(emailValidacao.value)) {  // O método test verifica se o valor do email corresponde ao padrão da expressão regular
+        msgError.innerHTML = '*Insira um email válido (precisa conter @ e .)';
+        emailValidacao.classList.add("errorInput");
+    } else {
+        msgError.innerHTML = '';
+        emailValidacao.classList.remove("errorInput");
+    }
+}, false)
+
+
+// Validação do especialidade
+const especialidadeValidacao = document.getElementById('especialidade');
+especialidadeValidacao.addEventListener('input', () => {
+
+    if (especialidadeValidacao.value != null) {  // O método test verifica se o valor do email corresponde ao padrão da expressão regular
+        especialidadeValidacao.classList.remove("errorInput");
+    }
+}, false)
+
+
+// Demais validações do endereço
+const campos = [
+    ["logradouro"],
+    ["bairro"],
+    ["uf"],
+    ["localidade"],
+    ["numero"]
+];
+
+campos.forEach(([campoId]) => {
+    const campo = document.getElementById(`${campoId}`);
+    const msgError = document.getElementById(`${campoId}` + "Error");
+
+    campo.addEventListener('input', () => {
+        if (campo.value.length < 1) {
+            msgError.innerHTML = '*Insira um ' + campoId + ' válido';
+            campo.classList.add("errorInput");
+        } else {
+            msgError.innerHTML = '';
+            campo.classList.remove("errorInput");
+        }
+    }, false)
+});
 
 
 

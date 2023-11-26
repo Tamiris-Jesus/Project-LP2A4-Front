@@ -54,6 +54,7 @@ h2 {
     display: none;
 }
 
+
 /* ------------------- Input inválido ------------------------*/
 .errorInput {
     background-color: #d11c1c21 !important;
@@ -63,12 +64,13 @@ h2 {
     color: rgb(136, 8, 8)  !important;
 }
 
-#cpfError,
-#crmError,
-#cepError,
-#cepError1,
-#telefoneError,
-#registroError {
+
+#nomeError, #cpfError,
+#crmError, #cepError,
+#cepError1, #telefoneError,
+#registroError, #emailError,
+#logradouroError, #ufError,
+#localidadeError, #bairroError, #numeroError {
     font-size: 12px;
     color: red;
 }
