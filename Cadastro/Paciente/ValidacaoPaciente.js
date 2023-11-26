@@ -2,6 +2,10 @@
 
 // Máscara do CPF e do CEP
 const masks = {
+    removeNumbers(value) {
+        return value
+            .replace(/[0-9]/g, '') // Remove caracteres numéricos
+    },
     cpf(value) {
         return value
             .replace(/\D/g, '') // Remove caracteres não numéricos
@@ -22,15 +26,16 @@ const masks = {
             .replace(/(\d{2})(\d)/, '($1)$2') // Adiciona parênteses após os primeiros 2 dígitos
             .replace(/(\d{5})(\d)/, '$1-$2') // Adiciona hífen após os próximos 4 dígitos
             .replace(/(-\d{4})(\d+?$)/, '$1'); // Remove caracteres após os últimos 4 dígitos
-    }
+    },
 }
 
 
 // Formatação telefone
-const telefoneValidacao= document.getElementById('telefone');
+const telefoneValidacao = document.getElementById('telefone');
 
 telefoneValidacao.addEventListener('input', async (e) => {
     const msgError = document.querySelector('#telefoneError');
+
     e.target.value = masks["telefone"](e.target.value); // Aplica a máscara de Telefone
     if (telefoneValidacao.value.length < 14) {
         msgError.innerHTML = '*Insira um telefone válido';
@@ -49,6 +54,7 @@ const cepValidacao = document.getElementById('cep');
 
 cepValidacao.addEventListener('input', async (e) => {
     const msgError = document.querySelector('#cepError');
+
     e.target.value = masks["cep"](e.target.value); // Aplica a máscara de CEP
     if (cepValidacao.value.length < 9) {
         msgError.innerHTML = '*Insira um CEP válido';
@@ -65,6 +71,7 @@ cepValidacao.addEventListener('input', async (e) => {
 const cepValidacao1 = document.getElementById('cep1');
 cepValidacao1.addEventListener('input', async (e) => {
     const msgError = document.querySelector('#cepError1');
+
     e.target.value = masks["cep"](e.target.value); // Aplica a máscara de CEP
     if (cepValidacao1.value.length < 9) {
         msgError.innerHTML = '*Insira um CEP válido';
@@ -77,10 +84,43 @@ cepValidacao1.addEventListener('input', async (e) => {
 }, false)
 
 
+// Validação do nome
+const nomeValidacao = document.getElementById('nome');
+nomeValidacao.addEventListener('input', (e) => {
+    const msgError = document.querySelector('#nomeError');
+
+    e.target.value = masks["removeNumbers"](e.target.value); 
+    if (nomeValidacao.value.length < 2) {
+        msgError.innerHTML = '*Insira um nome válido';
+        nomeValidacao.classList.add("errorInput");
+    } else {
+        msgError.innerHTML = '';
+        nomeValidacao.classList.remove("errorInput");
+    }
+}, false)
+
+
+// Validação do email
+const emailValidacao = document.getElementById('email');
+emailValidacao.addEventListener('input', () => {
+    const msgError = document.querySelector('#emailError');
+    const pattern = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+
+    if (!pattern.test(emailValidacao.value)) {  // O método test verifica se o valor do email corresponde ao padrão da expressão regular
+        msgError.innerHTML = '*Insira um email válido (precisa conter @ e .)';
+        emailValidacao.classList.add("errorInput");
+    } else {
+        msgError.innerHTML = '';
+        emailValidacao.classList.remove("errorInput");
+    }
+}, false)
+
+
 // Validação do CPF
 const cpfValidacao = document.getElementById('cpf');
 cpfValidacao.addEventListener('input', (e) => {
     const msgError = document.querySelector('#cpfError');
+
     e.target.value = masks["cpf"](e.target.value); // Aplica a máscara de CPF
     var validarCpf = cpfValidacao.value.replaceAll('.', '').replace('-', ''); // Remove caracteres especiais
     if (validarCpf.length == 11) { // Se o CPF tiver 11 dígitos...
@@ -120,6 +160,31 @@ function TestaCPF(validarCpf) {
 }
 
 
+// Demais validações do endereço
+const campos = [
+    ["logradouro"],
+    ["bairro"],
+    ["uf"],
+    ["localidade"],
+    ["numero"]
+];
+
+campos.forEach(([campoId]) => {
+    const campo = document.getElementById(`${campoId}`);
+    const msgError = document.getElementById(`${campoId}` + "Error");
+
+    campo.addEventListener('input', () => {
+        if (campo.value.length < 1) {
+            msgError.innerHTML = '*Insira um ' + campoId + ' válido';
+            campo.classList.add("errorInput");
+        } else {
+            msgError.innerHTML = '';
+            campo.classList.remove("errorInput");
+        }
+    }, false)
+});
+
+
 function enviar() {
     const campos = [
         ["nome"],
@@ -151,5 +216,5 @@ function enviar() {
     if (hasErrors) {
         document.querySelector(`#${campos[0][0]}`).focus();
         mensagemErro.style.display = "block";
-    } 
+    }
 }

@@ -30,6 +30,7 @@
                         <div class="mb-3">
                             <label for="nome" class="form-label nomeLabel">Nome (sem abreviações)</label>
                             <input type="text" name="nome" class="form-control" placeholder="Nome" id="nome" required>
+                            <div id="nomeError"></div>
                         </div>
                     </div>
                     <div class="col">
@@ -43,6 +44,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label emailLabel">Email</label>
                     <input type="email" name="email" class="form-control" placeholder="Email" id="email" required>
+                    <div id="emailError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="telefone" class="form-label telefoneLabel">Telefone</label>
@@ -70,28 +72,62 @@
                             <label for="logradouro" class="form-label logradouroLabel">Logradouro</label>
                             <input type="text" name="logradouro" class="form-control logradouro"
                                 placeholder="Logradouro" id="logradouro" required>
+                                <div id="logradouroError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="bairro" class="form-label bairroLabel">Bairro</label>
                             <input type="text" name="bairro" class="form-control bairro" placeholder="Bairro"
                                 id="bairro" required>
+                                <div id="bairroError"></div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="mb-3">
                             <label for="uf" class="form-label ufLabel">UF</label>
-                            <input type="text" name="uf" class="form-control uf" id="uf" placeholder="UF" maxlength="2"
-                                required>
+                            <select name="uf" class="form-control uf" id="uf" required>
+                                <option value="" selected disabled>Selecione um estado</option>
+                                <option value="AC">AC - Acre</option>
+                                <option value="AL">AL - Alagoas</option>
+                                <option value="AP">AP - Amapá</option>
+                                <option value="AM">AM - Amazonas</option>
+                                <option value="BA">BA - Bahia</option>
+                                <option value="CE">CE - Ceará</option>
+                                <option value="DF">DF - Distrito Federal</option>
+                                <option value="ES">ES - Espírito Santo</option>
+                                <option value="GO">GO - Goiás</option>
+                                <option value="MA">MA - Maranhão</option>
+                                <option value="MT">MT - Mato Grosso</option>
+                                <option value="MS">MS - Mato Grosso do Sul</option>
+                                <option value="MG">MG - Minas Gerais</option>
+                                <option value="PA">PA - Pará</option>
+                                <option value="PB">PB - Paraíba</option>
+                                <option value="PR">PR - Paraná</option>
+                                <option value="PE">PE - Pernambuco</option>
+                                <option value="PI">PI - Piauí</option>
+                                <option value="RJ">RJ - Rio de Janeiro</option>
+                                <option value="RN">RN - Rio Grande do Norte</option>
+                                <option value="RS">RS - Rio Grande do Sul</option>
+                                <option value="RO">RO - Rondônia</option>
+                                <option value="RR">RR - Roraima</option>
+                                <option value="SC">SC - Santa Catarina</option>
+                                <option value="SP">SP - São Paulo</option>
+                                <option value="SE">SE - Sergipe</option>
+                                <option value="TO">TO - Tocantins</option>
+                            </select>
+                            <div id="ufError"></div>
+                                <div id="ufError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="localidade" class="form-label localidadeLabel">Cidade</label>
                             <input type="text" name="cidade" class="form-control localidade" id="localidade"
                                 placeholder="Cidade" required>
+                                <div id="localidadeError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="numero" class="form-label numeroLabel">Número</label>
-                            <input type="number" name="numero" class="form-control numero" placeholder="Número"
+                            <input type="text" name="numero" class="form-control numero" placeholder="Número"
                                 id="numero" required>
+                                <div id="numeroError"></div>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -129,7 +165,36 @@
                     <div class="col">
                         <div class="mb-3">
                             <label for="uf1" class="form-label" id="ufLabel1">UF</label>
-                            <input type="text" name="uf1" class="form-control" id="uf1" placeholder="UF" maxlength="2">
+                            <select name="uf1" class="form-control uf1" id="uf1">
+                                <option value="" selected disabled>Selecione um estado</option>
+                                <option value="AC">AC - Acre</option>
+                                <option value="AL">AL - Alagoas</option>
+                                <option value="AP">AP - Amapá</option>
+                                <option value="AM">AM - Amazonas</option>
+                                <option value="BA">BA - Bahia</option>
+                                <option value="CE">CE - Ceará</option>
+                                <option value="DF">DF - Distrito Federal</option>
+                                <option value="ES">ES - Espírito Santo</option>
+                                <option value="GO">GO - Goiás</option>
+                                <option value="MA">MA - Maranhão</option>
+                                <option value="MT">MT - Mato Grosso</option>
+                                <option value="MS">MS - Mato Grosso do Sul</option>
+                                <option value="MG">MG - Minas Gerais</option>
+                                <option value="PA">PA - Pará</option>
+                                <option value="PB">PB - Paraíba</option>
+                                <option value="PR">PR - Paraná</option>
+                                <option value="PE">PE - Pernambuco</option>
+                                <option value="PI">PI - Piauí</option>
+                                <option value="RJ">RJ - Rio de Janeiro</option>
+                                <option value="RN">RN - Rio Grande do Norte</option>
+                                <option value="RS">RS - Rio Grande do Sul</option>
+                                <option value="RO">RO - Rondônia</option>
+                                <option value="RR">RR - Roraima</option>
+                                <option value="SC">SC - Santa Catarina</option>
+                                <option value="SP">SP - São Paulo</option>
+                                <option value="SE">SE - Sergipe</option>
+                                <option value="TO">TO - Tocantins</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="localidade1" class="form-label" id="localidadeLabel1">Cidade</label>
