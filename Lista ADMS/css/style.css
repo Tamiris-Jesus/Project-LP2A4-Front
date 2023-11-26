@@ -295,6 +295,7 @@ button:hover{
     text-align: center;
     align-items: center;
     justify-items: center;
+    font-weight:bolder;
 }
 
 .btn-voltar:hover{
