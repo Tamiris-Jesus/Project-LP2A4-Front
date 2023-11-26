@@ -9,7 +9,10 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f7f7f7;
+    /* background-color: #f7f7f7; */
+    background-image: url("../../img/pacientes.png");
+    background-repeat: no-repeat;
+    background-size: cover;    
 }
 
 
@@ -24,6 +27,8 @@ body {
     margin: 30px auto;
     align-items: center;
     justify-content: center;
+    top: 50px;
+    position: relative;
 }
 
 .div-table{
@@ -35,29 +40,27 @@ body {
     border-radius: 5px;
 }
 
-/*HEADER*******************************************************/
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 11vh;   
-    padding-left: 100px;
-    padding-right: 100px;
-    margin-bottom: 30px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 4px -2px #989898;
-    -moz-box-shadow: 0 4px 4px -2px #989898;
-    -webkit-box-shadow: 0 4px 4px -2px #989898;
+/*BOTAÕ DE VOLTAR HOME*******************************************************/
+
+.btn-back{
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    padding: 10px 20px;
+    background-color: rgb(9,26,85);
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    max-width: 200px;
 }
 
-.links button{
-    margin-left: 10px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;    
+.btn-back:hover{
+    background-color: rgb(14, 43, 141);
 }
-
 /*TITULOS*******************************************************/
 
 h1{

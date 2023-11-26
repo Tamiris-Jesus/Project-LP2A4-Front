@@ -1,7 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
 
+body{
+    background-image: url("../../img/consultas.png");
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+
+
 .container{
-    font-family: 'Poppins', sans-serif;   
+    font-family: 'Poppins', sans-serif;  
+    background-color: #fff;
+    border-radius: 5px; 
+    padding: 20px;
+    margin: 30px auto;
+    align-items: center;
+    justify-content: center;
+    top: 50px;
+    position: relative;
 }
 
 .campo-obrigatorio {
@@ -9,23 +24,22 @@
 }
 
 /*BOTAO HOME*******************************************************/
-.btn-back {
-    position: fixed;
-    top: 20px;
-    left: 10px;
-    padding: 10px 20px;
+.btn-back{
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  padding: 10px 20px;
+  background-color: rgb(9,26,85);
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  max-width: 200px;
+}
 
-    background-color: #333;
-    border: none;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--white-color);
-    cursor: pointer;
-
-    transition: .2s ease-in-out;
-  }
-  
-  .btn-back:hover {
-    background-color: #6b6b6b;
-  }
+.btn-back:hover{
+  background-color: rgb(14, 43, 141);
+}
