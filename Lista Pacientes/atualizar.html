@@ -8,6 +8,9 @@
 
     <!-- <script src="../Cadastro/Viacep.js" defer></script> -->
     <script src="./js/atualizar.js" defer></script>
+    <script src="../Cadastro/Paciente/ValidacaoPaciente.js" defer></script>
+    <script src="../Cadastro/Viacep.js" defer></script>
+
 
 
     <link rel="stylesheet" href="../Cadastro/CadastroStyle.css">
@@ -29,6 +32,7 @@
                         <div class="mb-3">
                             <label for="nome" class="form-label nomeLabel">Nome (sem abreviações)</label>
                             <input type="text" name="nome" class="form-control" placeholder="Nome" id="nome" required>
+                            <div id="nomeError"></div>
                         </div>
                     </div>
                     <div class="col">
@@ -42,6 +46,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label emailLabel">Email</label>
                     <input type="email" name="email" class="form-control" placeholder="Email" id="email" required>
+                    <div id="emailError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="telefone" class="form-label telefoneLabel">Telefone</label>

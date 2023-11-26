@@ -1,10 +1,43 @@
+const form = document.querySelector("form");
+const nome = document.querySelector("#nome");
+const cpf = document.querySelector("#cpf");
+const email = document.querySelector("#email");
+const telefone = document.querySelector("#telefone");
+
+const mensagemSucesso = document.getElementById("mensagemSucesso");
+const mensagemErro = document.getElementById("msgError");
+
+// Endereço principal
+const cep = document.querySelector("#cep");
+const logradouro = document.querySelector("#logradouro");
+const bairro = document.querySelector("#bairro");
+const uf = document.querySelector("#uf");
+const cidade = document.querySelector("#localidade");
+const numero = document.querySelector("#numero");
+const complemento = document.querySelector("#complemento");
+
+// Endereço adicional
+const cep1 = document.getElementById("cep1");
+const logradouro1 = document.getElementById("logradouro1");
+const bairro1 = document.getElementById("bairro1");
+const uf1 = document.getElementById("uf1");
+const cidade1 = document.getElementById("localidade1");
+const numero1 = document.getElementById("numero1");
+const complemento1 = document.getElementById("complemento1");
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Obter o pacienteId dos parâmetros da URL
     const pacienteId = window.location.search.split('id=')[1];
     console.log("ID do paciente obtido:", pacienteId);
 
     fetch(`http://localhost:8080/pacientes/${pacienteId}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+        })
         .then(paciente => {
             console.log(paciente);
 
@@ -30,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Preencher os campos do endereço adicional, se existir
             if (paciente.enderecosDTO.length > 1) {
-                const enderecoAdicional = paciente.enderecosDTO[1]; // Considerando que há apenas um endereço adicional
+                const enderecoAdicional = paciente.enderecosDTO[1];
                 document.getElementById('cep1').value = enderecoAdicional.cep;
                 document.getElementById('logradouro1').value = enderecoAdicional.logradouro;
                 document.getElementById('bairro1').value = enderecoAdicional.bairro;
@@ -51,11 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-
-function enviar() {
+function cadastrar() {
     const pacienteId = window.location.search.split('id=')[1];
 
-    // Construir o objeto de requisição com as informações atualizadas
     const requestBody = {
         id: pacienteId,
         nome: document.getElementById('nome').value,
@@ -76,18 +107,17 @@ function enviar() {
         ]
     };
 
-    // Adicionar endereço adicional se existir
     if (document.getElementById('enderecoAdicional').style.display === 'block') {
         requestBody.enderecos.push(
             {
-            id: document.getElementById('enderecoAdicionalId').value,
-            logradouro: document.getElementById('logradouro1').value,
-            bairro: document.getElementById('bairro1').value,
-            cep: document.getElementById('cep1').value,
-            cidade: document.getElementById('localidade1').value,
-            uf: document.getElementById('uf1').value,
-            complemento: document.getElementById('complemento1').value,
-            numero: document.getElementById('numero1').value
+                id: document.getElementById('enderecoAdicionalId').value,
+                logradouro: document.getElementById('logradouro1').value,
+                bairro: document.getElementById('bairro1').value,
+                cep: document.getElementById('cep1').value,
+                cidade: document.getElementById('localidade1').value,
+                uf: document.getElementById('uf1').value,
+                complemento: document.getElementById('complemento1').value,
+                numero: document.getElementById('numero1').value
             }
         );
     }
@@ -107,6 +137,7 @@ function enviar() {
             return response.json();
         })
         .then(data => {
+            console.log('Resposta do servidor:', data);
             mostrarMensagemSucesso();
             setTimeout(function () {
                 mensagemSucesso.style.display = 'none';
@@ -122,7 +153,6 @@ function mostrarMensagemSucesso() {
     mensagemSucesso.style.display = "block";
 }
 
-
 function limpar() {
     const campos = [
         nome, cpf, email, telefone,
@@ -132,3 +162,11 @@ function limpar() {
 
     campos.forEach(campo => campo.value = "");
 }
+
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    cadastrar();
+    limpar();
+});

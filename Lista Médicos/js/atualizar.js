@@ -1,3 +1,31 @@
+const form = document.querySelector("form");
+const nome = document.querySelector("#nome");
+const crm = document.querySelector("#crm");
+const email = document.querySelector("#email");
+const especialidade = document.querySelector("#especialidade");
+const telefone = document.querySelector("#telefone");
+
+const mensagemSucesso = document.getElementById("mensagemSucesso");
+const mensagemErro = document.getElementById("msgError");
+
+// Endereço principal
+const cep = document.querySelector("#cep");
+const logradouro = document.querySelector("#logradouro");
+const bairro = document.querySelector("#bairro");
+const uf = document.querySelector("#uf");
+const cidade = document.querySelector("#localidade");
+const numero = document.querySelector("#numero");
+const complemento = document.querySelector("#complemento");
+
+// Endereço adicional
+const cep1 = document.getElementById("cep1");
+const logradouro1 = document.getElementById("logradouro1");
+const bairro1 = document.getElementById("bairro1");
+const uf1 = document.getElementById("uf1");
+const cidade1 = document.getElementById("localidade1");
+const numero1 = document.getElementById("numero1");
+const complemento1 = document.getElementById("complemento1");
+
 document.addEventListener('DOMContentLoaded', function () {
     // Obter o pacienteId dos parâmetros da URL
     const medicoId = window.location.search.split('id=')[1];
@@ -54,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function enviar() {
+function cadastrar() {
     const medicoId = window.location.search.split('id=')[1];
 
     // Construir o objeto de requisição com as informações atualizadas
@@ -123,17 +151,24 @@ function enviar() {
         });
 }
 
-// function mostrarMensagemSucesso() {
-//     mensagemSucesso.style.display = "block";
-// }
+function mostrarMensagemSucesso() {
+    mensagemSucesso.style.display = "block";
+}
 
 
-// function limpar() {
-//     const campos = [
-//         nome, cpf, email, telefone,
-//         cep, logradouro, bairro, uf, cidade, numero, complemento,
-//         cep1, logradouro1, bairro1, uf1, cidade1, numero1, complemento1
-//     ];
+function limpar() {
+    const campos = [
+        nome, crm, email, especialidade, telefone,
+        cep, logradouro, bairro, uf, cidade, numero, complemento,
+        cep1, logradouro1, bairro1, uf1, cidade1, numero1, complemento1
+    ];
 
-//     campos.forEach(campo => campo.value = "");
-// }
+    campos.forEach(campo => campo.value = "");
+}
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    cadastrar();
+    limpar();
+});

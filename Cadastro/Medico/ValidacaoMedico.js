@@ -1,5 +1,4 @@
 
-
 // Máscara do CEP
 const masks = {
     removeNumbers(value) {
@@ -44,13 +43,13 @@ const cepValidacao = document.getElementById('cep');
 cepValidacao.addEventListener('input', async (e) => {
     const msgError = document.querySelector('#cepError');
     e.target.value = masks["cep"](e.target.value); // Aplica a máscara de CEP
-    if (_cep.value.length < 9) {
+    if (cep.value.length < 9) {
         msgError.innerHTML = '*Insira um CEP válido';
-        _cep.classList.add("errorInput");
+        cep.classList.add("errorInput");
         return;
     } else {
         msgError.innerHTML = '';
-        _cep.classList.remove("errorInput");
+        cep.classList.remove("errorInput");
     }
 }, false)
 
