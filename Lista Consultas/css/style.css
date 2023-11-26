@@ -35,28 +35,27 @@ body {
     border-radius: 5px;
 }
 
-/*HEADER*******************************************************/
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 11vh;   
-    padding-left: 100px;
-    padding-right: 100px;
-    margin-bottom: 30px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 4px -2px #989898;
-    -moz-box-shadow: 0 4px 4px -2px #989898;
-    -webkit-box-shadow: 0 4px 4px -2px #989898;
-}
+/*BOTAO HOME*******************************************************/
+.btn-back {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    padding: 10px 20px;
 
-.links button{
-    margin-left: 10px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;    
-}
+    background-color: #333;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white-color);
+    cursor: pointer;
+
+    transition: .2s ease-in-out;
+  }
+  
+  .btn-back:hover {
+    background-color: #6b6b6b;
+  }
 
 /*TITULOS*******************************************************/
 

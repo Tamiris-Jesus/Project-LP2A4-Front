@@ -110,7 +110,7 @@ function cadastrar() {
     if (document.getElementById('enderecoAdicional').style.display === 'block') {
         requestBody.enderecos.push(
             {
-                id: document.getElementById('enderecoAdicionalId').value,
+                id: null,
                 logradouro: document.getElementById('logradouro1').value,
                 bairro: document.getElementById('bairro1').value,
                 cep: document.getElementById('cep1').value,

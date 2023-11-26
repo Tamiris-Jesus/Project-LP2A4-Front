@@ -53,15 +53,10 @@ function exibirDetalhes(row) {
                 excluirPaciente(pacienteId);
             };
 
-            //  btnEditar.onclick = function () {
-            //     atualizar(pacienteId);
-            // };
-
             btnEditar.onclick = function () {
                 window.location.href = `./atualizar.html?id=${pacienteId}`;
             };
             
-        
             body.innerHTML = `
                 <div class="modal-info-container">
                     <div class="paciente-info">
@@ -76,7 +71,11 @@ function exibirDetalhes(row) {
                             <dd>${paciente.telefone}</dd>
                             <dt>CPF</dt>
                             <dd>${paciente.cpf}</dd>
-                            <br>
+                        </dl>
+                    </div>
+
+                    <div class="endereco-info">
+                        <dl class="lista-detalhes">
                             <dt>Endereço(s) cadastrado(s):</dt>
                             ${paciente.enderecosDTO.map(endereco => `
                                 <dt>Logradouro</dt>
@@ -101,10 +100,12 @@ function exibirDetalhes(row) {
             `;
 
             Modal.open();
-      
         })
         .catch(error => {
             console.error('Erro ao obter detalhes do paciente:', error);
             window.location.href = '../../error.html'; 
         });
 }
+
+
+

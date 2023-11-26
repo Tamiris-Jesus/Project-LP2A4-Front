@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("./img/home.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: arial;
+}
+
+header {
+    width: 100%;
+    float: left;
+}
+
+.wrapper {
+    max-width: 1400px;
+    padding: 0px 10px;
+    margin-left: 4em;
+}
+
+.logo {
+    float: left;
+    margin: 10px 0px;
+    padding-top: 15px;
+    max-width: 20px;
+}
+
+img {
+    width: 3em;
+}
+
+/*-- Navbar CSS --*/
+.navbar {
+    float: right;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar li {
+    list-style: none;
+    position: relative;
+    padding: 30px 0px;
+}
+
+.navbar a {
+    color: #fff;
+    position: relative;
+    font-size: 19px;
+    text-decoration: none;
+    padding: 15px 12px;
+    z-index: 1;
+}
+
+.navbar li:hover {
+    color: #fff;
+}
+
+.navbar a:after {
+    content: "";
+    width: 100%;
+    height: 0px;
+    background-color: #2020208a;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.navbar li:hover > a:after{
+    height: 100%;
+}
+
+.navbar i{
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.toggle-btn{
+    float: right;
+    height: 90px;
+    line-height: 90px;
+    color: #fff;
+    font-size: 26px;
+    display: none;
+    cursor: pointer;
+}
+
+.navbar.active{
+    display: block;
+}
+
+/*-- Sub Menus CSS--*/
+.sub-menus ul {
+    position: absolute;
+    top: 80px;
+    background-color: #fff;
+    padding: 5px 0px;
+    min-width: 150px;
+    box-shadow: 0px 0px 8px #636363;
+    border-radius: 4px;
+    display: none;
+}
+
+.sub-menus:hover ul {
+    display: block;
+}
+
+.sub-menus ul li {
+    padding: 5px 0px;
+}
+
+.sub-menus ul li a {
+    padding: 8px 10px;
+    display: block;
+    color: #5a30a5;
+}
+
+.sub-menus ul li:hover a {
+    color: #fff;
+}
+
+.sub-menus ul::before {
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    position: absolute;
+    top: -9px;
+}
+
+.login {
+    padding-left: 50px;
+    padding-right: 20px;
+    float: right;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
+

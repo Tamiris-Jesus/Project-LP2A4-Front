@@ -48,12 +48,10 @@ function exibirDetalhes(row) {
             const btnExcluir = document.querySelector('#yes');
             const btnEditar = document.querySelector('#editar');
 
-
             btnExcluir.onclick = function () {
-                excluirAdministrador(administradorId);
+                excluirPaciente(administradorId);
             };
 
-              
             btnEditar.onclick = function () {
                 window.location.href = `./atualizar.html?id=${administradorId}`;
             };

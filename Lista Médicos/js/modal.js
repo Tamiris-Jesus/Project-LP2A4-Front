@@ -48,16 +48,14 @@ function exibirDetalhes(row) {
             const btnExcluir = document.querySelector('#yes');
             const btnEditar = document.querySelector('#editar');
 
-
             btnExcluir.onclick = function () {
-                excluirMedico(medicoId);
+                excluirPaciente(medicoId);
             };
 
-            
             btnEditar.onclick = function () {
                 window.location.href = `./atualizar.html?id=${medicoId}`;
             };
-
+            
             body.innerHTML = `
             <div class="modal-info-container">
                 <div class="medico-info">
